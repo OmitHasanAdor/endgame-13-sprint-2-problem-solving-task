@@ -68,8 +68,35 @@ function countVowels(str) {
     return count
   
 }
-console.log(countVowels("raceecar"))
+// console.log(countVowels("raceecar"))
 
+// 6. Two Sum
+function twoSum(nums, target){
+    // Write your code here
+    for (let i  = 0; i  < nums.length; i ++) {
+       for (let j  = i+1; j  < nums.length; j ++) {
+       if (target==nums[i]+nums[j]) {
+        return [i,j]
+       }
+        
+       }
+        
+    }
+}
+// console.log(twoSum([2, 7, 11, 15],9))
 
+// 7. Flatten a Nested Array
+function flattenArray(arr){
+    // Write your code here
+     let result = []
+    for (let i = 0; i < arr.length; i++) {
+        if (Array.isArray(arr[i])) {
+            result = result.concat(flattenArray(arr[i]))
+        } else {
+            result.push(arr[i])
+        }
+    }
+    return result
+}
 
-
+console.log(flattenArray([1, [2, [3, 4], 5]]))
