@@ -1,5 +1,4 @@
 // 1. Reverse a String
-
 function reverseString(str) {
     // Write your code here
     const reverse = str.split("")
@@ -98,5 +97,59 @@ function flattenArray(arr){
     }
     return result
 }
+// console.log(flattenArray([1, [2, [3, 4], 5]]))
 
-console.log(flattenArray([1, [2, [3, 4], 5]]))
+// 8. Group Anagrams
+function groupAnagrams(strs){
+    // Write your code here
+     const groups = {}
+    for (let i = 0; i < strs.length; i++) {
+        const word = strs[i]
+        const key = word.split("").sort().join("")
+        if (!groups[key]) {
+            groups[key] = []
+        }
+        groups[key].push(word)
+    }
+    return Object.values(groups)
+}
+// console.log(groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))
+
+// 9. Longest Substring Without Repeating Characters
+function lengthOfLongestSubstring(s){
+    // Write your code here
+     let left = 0
+    let maxLength = 0
+    let current = ""
+    for (let right = 0; right < s.length; right++) {
+        while (current.includes(s[right])) {
+            current = current.slice(1)
+            left++
+        }
+        current = current + s[right]
+        if (current.length > maxLength) {
+            maxLength = current.length
+        }
+    }
+    return maxLength
+}
+// console.log(lengthOfLongestSubstring("abceabcbb"))
+
+// 10. Deep Clone an Object
+function deepClone(obj){
+    // Write your code here
+    if (obj === null || typeof obj !== "object") {
+        return obj
+    }
+    if (Array.isArray(obj)) {
+        return obj.map(deepClone)
+    }
+    const clonedObj = {}
+    for (const key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            clonedObj[key] = deepClone(obj[key])
+        }
+    }
+    return clonedObj
+}
+// console.log(deepClone({ a: 1, b: { c: 2 } }))
